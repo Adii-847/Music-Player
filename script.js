@@ -2,6 +2,21 @@ document.addEventListener("DOMContentLoaded", function () {
 
  
   const songs = document.querySelectorAll(".song");
+  const searchInput = document.getElementById("searchInput");
+
+  searchInput.addEventListener("input", function () {
+    const value = this.value.toLowerCase();
+
+    songs.forEach(song => {
+      const text = song.textContent.toLowerCase();
+
+      if (text.includes(value)) {
+        song.style.display = "block";
+      } else {
+        song.style.display = "none";
+      }
+    });
+  });
 
   //  Audio files (same order as songs in HTML)
   const files = [
@@ -69,7 +84,25 @@ document.addEventListener("DOMContentLoaded", function () {
   const volumeIcon = document.querySelector('.volume-icon');
   let prevVolume = 1;
   const pulses = document.querySelectorAll('.pulse');
+  const themeToggle = document.getElementById("themeToggle");
+  const themeIcon = themeToggle.querySelector("i");
 
+  if (localStorage.getItem("theme") === "dark") {
+    document.body.classList.add("dark");
+    themeIcon.classList.replace("fa-moon", "fa-sun");
+  }
+
+  themeToggle.addEventListener("click", () => {
+    document.body.classList.toggle("dark");
+
+    if (document.body.classList.contains("dark")) {
+      themeIcon.classList.replace("fa-moon", "fa-sun");
+      localStorage.setItem("theme", "dark");
+    } else {
+      themeIcon.classList.replace("fa-sun", "fa-moon");
+      localStorage.setItem("theme", "light");
+    }
+  });
 
   let audioContext;
   let dataArray;

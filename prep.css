@@ -109,16 +109,22 @@ main{
     background-color: rgba(0, 20, 40, 0.6); 
 } */
 
-.playlist{
-    /* background-color:blue; */
+.left-panel {
+    display: flex;
+    flex-direction: column;
     height: 90vh;
     width: 35vw;
-    overflow:scroll;
-    scrollbar-width: none;
     margin-right: 1.5rem;
-    border-right:1px solid pink;
+    border-right: 1px solid pink;
     border-radius: 5px;
     background-color: var(--bg-secondary);
+}
+
+.playlist{
+    /* background-color:blue; */
+    flex: 1;
+    overflow:scroll;
+    scrollbar-width: none;
 }
 
 .search-container {
@@ -283,7 +289,7 @@ body.dark nav {
 }
 
 /* ===== DARK PLAYLIST ===== */
-body.dark .playlist {
+body.dark .left-panel {
   background-color: #111111;
   border-right: 1px solid var(--accent);
 }
